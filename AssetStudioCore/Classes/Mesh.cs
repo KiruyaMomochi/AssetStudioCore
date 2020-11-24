@@ -1348,7 +1348,7 @@ namespace AssetStudio
                         value = inputBytes[i] / 255.0f;
                         break;
                     case 2:
-                        value = Half.ToHalf(inputBytes, i * 2);
+                        value = (float)Utils.ToHalf(inputBytes, i * 2);
                         break;
                     case 4:
                         value = BitConverter.ToSingle(inputBytes, i * 4);
