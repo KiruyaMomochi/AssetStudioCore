@@ -2533,14 +2533,14 @@ namespace crnd
          return NULL;
       }
 
-      CRND_ASSERT(((uint32)p_new & (CRND_MIN_ALLOC_ALIGNMENT - 1)) == 0);
+      CRND_ASSERT(((intptr_t)p_new & (CRND_MIN_ALLOC_ALIGNMENT - 1)) == 0);
 
       return p_new;
    }
 
    void* crnd_realloc(void* p, size_t size, size_t* pActual_size, bool movable)
    {
-      if ((uint32)reinterpret_cast<ptr_bits>(p) & (CRND_MIN_ALLOC_ALIGNMENT - 1))
+      if ((intptr_t)reinterpret_cast<ptr_bits>(p) & (CRND_MIN_ALLOC_ALIGNMENT - 1))
       {
          crnd_mem_error("crnd_realloc: bad ptr");
          return NULL;
@@ -2558,7 +2558,7 @@ namespace crnd
       if (pActual_size)
          *pActual_size = actual_size;
 
-      CRND_ASSERT(((uint32)p_new & (CRND_MIN_ALLOC_ALIGNMENT - 1)) == 0);
+      CRND_ASSERT(((intptr_t)p_new & (CRND_MIN_ALLOC_ALIGNMENT - 1)) == 0);
 
       return p_new;
    }
@@ -2568,7 +2568,7 @@ namespace crnd
       if (!p)
          return;
 
-      if ((uint32)reinterpret_cast<ptr_bits>(p) & (CRND_MIN_ALLOC_ALIGNMENT - 1))
+      if ((intptr_t)reinterpret_cast<ptr_bits>(p) & (CRND_MIN_ALLOC_ALIGNMENT - 1))
       {
          crnd_mem_error("crnd_free: bad ptr");
          return;
@@ -2582,7 +2582,7 @@ namespace crnd
       if (!p)
          return 0;
 
-      if ((uint32)reinterpret_cast<ptr_bits>(p) & (CRND_MIN_ALLOC_ALIGNMENT - 1))
+      if ((intptr_t)reinterpret_cast<ptr_bits>(p) & (CRND_MIN_ALLOC_ALIGNMENT - 1))
       {
          crnd_mem_error("crnd_msize: bad ptr");
          return 0;
