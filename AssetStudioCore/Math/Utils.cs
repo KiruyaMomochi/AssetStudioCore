@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AssetStudio
 {
-    internal static class Utils
+    public static class Utils
     {
         // Converts an array of bytes into a half.
         public static Half ToHalf(byte[] value, int startIndex) => Int16BitsToHalf(System.BitConverter.ToInt16(value, startIndex));
