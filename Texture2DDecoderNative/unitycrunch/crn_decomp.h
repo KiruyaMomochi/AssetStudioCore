@@ -44,6 +44,9 @@
 #include "windows.h"  // only for IsDebuggerPresent(), DebugBreak(), and OutputDebugStringA()
 #endif
 
+// memset, memcpy
+#include <cstring>
+
 // File: crnd_types.h
 namespace unitycrnd {
 const crn_uint8 cUINT8_MIN = 0;
