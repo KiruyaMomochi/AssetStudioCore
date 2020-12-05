@@ -25,6 +25,9 @@
 #define CRND_BUILD_RELEASE
 #endif
 
+// memset
+#include <cstring>
+
 // CRN decompression API
 namespace crnd
 {
