@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PowerShellStandard.Library" Version="7.0.0-preview.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AssetStudioCore\AssetStudioCore.csproj" />
+    <ProjectReference Include="..\AssetStudioUtility\AssetStudioUtility.csproj" />
+  </ItemGroup>
+
+</Project>
