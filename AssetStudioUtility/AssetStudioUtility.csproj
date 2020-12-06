@@ -20,4 +20,11 @@
     <ProjectReference Include="..\AssetStudioCore\AssetStudioCore.csproj" />
   </ItemGroup>
 
+  <Target Name="MyPreCompileTarget" BeforeTargets="Build" Outputs="">
+    <Exec Command="cmake -S ../Texture2DDecoderNative -B ../Texture2DDecoderNative/build" Condition=" '$(OS)' == 'Windows_NT' " />
+    <Exec Command="cmake --build ../Texture2DDecoderNative/build --config $(Configuration)" Condition=" '$(OS)' == 'Windows_NT' " />
+    <Exec Command="cmake -DCMAKE_BUILD_TYPE=$(Configuration) -S ../Texture2DDecoderNative -B ../Texture2DDecoderNative/build" Condition=" '$(OS)' == 'Unix' " />
+    <Exec Command="cmake --build ../Texture2DDecoderNative/build" Condition=" '$(OS)' == 'Unix' " />
+  </Target>
+
 </Project>
