@@ -8,14 +8,19 @@ namespace AssetStudioModule
     [Cmdlet(VerbsData.Import, "UnityAsset")]
     public class LoadFiles : PSCmdlet
     {
-        [Parameter(Position = 0, Mandatory = true)]
+        [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]
         public string[] Files { get; set; } = Array.Empty<string>();
 
-        protected override void ProcessRecord()
+        protected override void BeginProcessing()
         {
             Directory.SetCurrentDirectory(this.SessionState.Path.CurrentFileSystemLocation.Path);
 
-            var assetManager = new AssetStudio.AssetsManager();
+            base.BeginProcessing();
+        }
+
+        protected override void ProcessRecord()
+        {
+            var assetManager = new AssetsManager();
             assetManager.LoadFiles(Files);
             WriteObject(assetManager);
             base.ProcessRecord();
@@ -26,7 +31,7 @@ namespace AssetStudioModule
     public class ReadTexture2D : PSCmdlet
     {
         
-        [Parameter(Position = 0, Mandatory = true)]
+        [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]
         public Texture2D File { get; set; }
 
         protected override void ProcessRecord()
