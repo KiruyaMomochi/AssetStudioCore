@@ -13,16 +13,4 @@
     <ProjectReference Include="..\AssetStudioUtility\AssetStudioUtility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="..\Texture2DDecoderNative\build\$(Configuration)\Texture2DDecoder.dll" Condition=" '$(OS)' == 'Windows_NT' ">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Texture2DDecoderNative\build\libTexture2DDecoder.so" Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' ">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Texture2DDecoderNative\build\libTexture2DDecoder.dylib" Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' ">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
