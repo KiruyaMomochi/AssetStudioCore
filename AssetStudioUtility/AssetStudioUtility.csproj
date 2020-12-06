@@ -20,13 +20,13 @@
     <ProjectReference Include="..\AssetStudioCore\AssetStudioCore.csproj" />
   </ItemGroup>
 
-  <Target Name="MyPreCompileTarget" BeforeTargets="Build" Outputs="">
+  <Target Name="MyPreCompileTarget" BeforeTargets="ResolveReferences" Inputs="..\Texture2DDecoderNative" Outputs="..\Texture2DDecoderNative\build\$(Configuration)\">
     <Exec Command="cmake -S ../Texture2DDecoderNative -B ../Texture2DDecoderNative/build" Condition=" '$(OS)' == 'Windows_NT' " />
     <Exec Command="cmake --build ../Texture2DDecoderNative/build --config $(Configuration)" Condition=" '$(OS)' == 'Windows_NT' " />
     <Exec Command="cmake -DCMAKE_BUILD_TYPE=$(Configuration) -S ../Texture2DDecoderNative -B ../Texture2DDecoderNative/build" Condition=" '$(OS)' == 'Unix' " />
     <Exec Command="cmake --build ../Texture2DDecoderNative/build" Condition=" '$(OS)' == 'Unix' " />
   </Target>
-
+  
   <ItemGroup>
     <Content Include="..\Texture2DDecoderNative\build\$(Configuration)\Texture2DDecoder.dll" Condition=" '$(OS)' == 'Windows_NT' ">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
