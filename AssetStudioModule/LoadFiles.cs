@@ -14,12 +14,14 @@ namespace AssetStudioModule
         protected override void BeginProcessing()
         {
             Directory.SetCurrentDirectory(this.SessionState.Path.CurrentFileSystemLocation.Path);
-
             base.BeginProcessing();
         }
 
         protected override void ProcessRecord()
         {
+            for (var i = 0; i < Files.Length; i++) 
+                Files[i] = Path.GetFullPath(Files[i]);
+
             var assetManager = new AssetsManager();
             assetManager.LoadFiles(Files);
             WriteObject(assetManager);
