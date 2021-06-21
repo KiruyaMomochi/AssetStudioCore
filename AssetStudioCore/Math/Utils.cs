@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AssetStudio
 {
+    // TODO: After .NET 6.0 releases, remove this class and use BitConverter.ToHalf instead
     public static class Utils
     {
         // Converts an array of bytes into a half.
