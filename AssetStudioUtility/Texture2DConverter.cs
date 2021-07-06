@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Texture2DDecoder;
-using static AssetStudio.Utils;
 
 namespace AssetStudio
 {
@@ -27,26 +23,6 @@ namespace AssetStudio
             m_TextureFormat = m_Texture2D.m_TextureFormat;
             version = m_Texture2D.version;
             platform = m_Texture2D.platform;
-        }
-
-        public Bitmap ConvertToBitmap(bool flip)
-        {
-            if (image_data == null || image_data.Length == 0)
-                return null;
-            var buff = DecodeTexture2D();
-            if (buff == null)
-            {
-                return null;
-            }
-            var bitmap = new Bitmap(m_Width, m_Height, PixelFormat.Format32bppArgb);
-            var bmpData = bitmap.LockBits(new Rectangle(0, 0, m_Width, m_Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-            Marshal.Copy(buff, 0, bmpData.Scan0, buff.Length);
-            bitmap.UnlockBits(bmpData);
-            if (flip)
-            {
-                bitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            }
-            return bitmap;
         }
 
         public byte[] DecodeTexture2D()
@@ -394,7 +370,7 @@ namespace AssetStudio
             {
                 buff[i] = 0;
                 buff[i + 1] = 0;
-                buff[i + 2] = (byte)Math.Round((float)ToHalf(image_data, i / 2) * 255f);
+                buff[i + 2] = (byte)Math.Round((float)Utils.ToHalf(image_data, i / 2) * 255f);
                 buff[i + 3] = 255;
             }
             return buff;
@@ -406,8 +382,8 @@ namespace AssetStudio
             for (var i = 0; i < buff.Length; i += 4)
             {
                 buff[i] = 0;
-                buff[i + 1] = (byte)Math.Round((float)ToHalf(image_data, i + 2) * 255f);
-                buff[i + 2] = (byte)Math.Round((float)ToHalf(image_data, i) * 255f);
+                buff[i + 1] = (byte)Math.Round((float)Utils.ToHalf(image_data, i + 2) * 255f);
+                buff[i + 2] = (byte)Math.Round((float)Utils.ToHalf(image_data, i) * 255f);
                 buff[i + 3] = 255;
             }
             return buff;
@@ -418,10 +394,10 @@ namespace AssetStudio
             var buff = new byte[m_Width * m_Height * 4];
             for (var i = 0; i < buff.Length; i += 4)
             {
-                buff[i] = (byte)Math.Round((float)ToHalf(image_data, i * 2 + 4) * 255f);
-                buff[i + 1] = (byte)Math.Round((float)ToHalf(image_data, i * 2 + 2) * 255f);
-                buff[i + 2] = (byte)Math.Round((float)ToHalf(image_data, i * 2) * 255f);
-                buff[i + 3] = (byte)Math.Round((float)ToHalf(image_data, i * 2 + 6) * 255f);
+                buff[i] = (byte)Math.Round((float)Utils.ToHalf(image_data, i * 2 + 4) * 255f);
+                buff[i + 1] = (byte)Math.Round((float)Utils.ToHalf(image_data, i * 2 + 2) * 255f);
+                buff[i + 2] = (byte)Math.Round((float)Utils.ToHalf(image_data, i * 2) * 255f);
+                buff[i + 3] = (byte)Math.Round((float)Utils.ToHalf(image_data, i * 2 + 6) * 255f);
             }
             return buff;
         }

@@ -38,7 +38,7 @@ namespace AssetStudioModule
 
         protected override void ProcessRecord()
         {
-            WriteObject(File.ConvertToBitmap(true));
+            WriteObject(File.ConvertToImage(true));
         }
     }
 }
